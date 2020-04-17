@@ -1,0 +1,322 @@
+<template>
+  <div class="bg">
+    <div class="cont">
+      <div class="title">预约人基本信息（必填）</div>
+      <div class="input">
+        <!--<van-field v-model="cardNum" label="卡号" border />-->
+        <label for="cardNum">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</label>
+        <input v-model="name" id="cardNum" class="inp" type="text" placeholder="请输入姓名">
+      </div>
+      <div class="input">
+        <!--<van-field v-model="cardNum" label="卡号" border />-->
+        <label for="password">性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别</label>
+        <select v-model="sex" name="" id="type" class="inp">
+          <option value="">请选择</option>
+          <option value="1">男</option>
+          <option value="2">女</option>
+          <option value="3">第三性别</option>
+        </select>
+      </div>
+      <div class="input">
+        <label for="age">年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;龄</label>
+        <input v-model="age" @focus="change('age')" id="age" class="inp" type="text" placeholder="请选择年龄">
+      </div>
+      <div class="input">
+        <label for="phone">电&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;话</label>
+        <input v-model="phone" id="phone" class="inp" type="text" placeholder="请输入电话">
+      </div>
+      <div class="input">
+        <!--<van-field v-model="cardNum" label="卡号" border />-->
+        <label for="card">证&nbsp;&nbsp;件&nbsp;&nbsp;类&nbsp;型</label>
+        <select v-model="card" name="" id="card" class="inp">
+          <option value="">请选择</option>
+          <option value="2">身份证</option>
+          <option value="3">护照</option>
+        </select>
+      </div>
+      <div class="input">
+        <label for="phone">证&nbsp;&nbsp;件&nbsp;&nbsp;号&nbsp;码</label>
+        <input v-model="phone" id="num" class="inp" type="text" placeholder="请输入电话">
+      </div>
+      <div class="input">
+        <!--<van-field v-model="cardNum" label="卡号" border />-->
+        <label for="card">预&nbsp;&nbsp;约&nbsp;&nbsp;项&nbsp;目</label>
+        <el-select v-model="value" multiple placeholder="请选择" collapse-tags>
+          <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
+        </el-select>
+      </div>
+
+      <div class="input">
+        <!--<van-field v-model="cardNum" label="卡号" border />-->
+        <label for="card">预&nbsp;约&nbsp;采&nbsp;样&nbsp;点</label>
+        <el-select v-model="value" multiple placeholder="请选择" collapse-tags>
+          <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
+        </el-select>
+      </div>
+    </div>
+    <!--<van-popup position="bottom" v-model="dateState">-->
+
+    <!--</van-popup>-->
+
+
+    <div class="cont">
+      <div class="title">受检人健康信息（选填）</div>
+      <div class="input dis">
+        <!--<van-field v-model="cardNum" label="卡号" border />-->
+        <label for="cardNum">本人是否有肿瘤家族史</label>
+        <select v-model="isFamily" name="" class="inp">
+          <option value="">请选择</option>
+          <option value="2">是</option>
+          <option value="1">否</option>
+        </select>
+      </div>
+      <div class="input dis" v-if="isFamily==2">
+        <label for="cardNum">本人与肿瘤患者成员关系</label>
+        <select v-model="relation" name="" id="" class="inp">
+          <option value="">请选择</option>
+          <option value="1">祖父</option>
+          <option value="2">祖父</option>
+          <option value="3">外公</option>
+          <option value="4">外婆</option>
+          <option value="5">父亲</option>
+          <option value="6">母亲</option>
+          <option value="7">兄弟姐妹</option>
+          <option value="8">子女</option>
+          <option value="9">伯/叔/姑</option>
+          <option value="10">舅/姨</option>
+        </select>
+      </div>
+      <div class="input dis" v-if="isFamily==2">
+        <label for="age">家族肿瘤患者患什么肿瘤</label>
+        <input v-model="zlType" class="inp" type="text" placeholder="">
+      </div>
+      <div class="input dis">
+        <label for="phone">本人是否患过肿瘤</label>
+        <select v-model="isSelf" name="" class="inp">
+          <option value="">请选择</option>
+          <option value="2">是</option>
+          <option value="1">否</option>
+        </select>
+      </div>
+      <div class="input dis" v-if="isSelf == 2">
+        <!--<van-field v-model="cardNum" label="卡号" border />-->
+        <label for="card">本人患肿瘤时间</label>
+        <input v-model="zlTime" @focus="change('zl')" class="inp" type="text" placeholder="请选择">
+      </div>
+      <div class="input dis" v-if="isSelf == 2">
+        <label for="phone">本人患什么肿瘤</label>
+        <input v-model="selfType" class="inp" type="text" placeholder="请输入">
+      </div>
+      <div class="input dis" v-if="isSelf == 2">
+        <!--<van-field v-model="cardNum" label="卡号" border />-->
+        <label for="card">目前健康状态
+          （可多选）</label>
+        <el-select v-model="health" multiple placeholder="请选择" collapse-tags>
+          <el-option v-for="item in healthState" :key="item.value" :label="item.label" :value="item.value"></el-option>
+        </el-select>
+      </div>
+
+    </div>
+    <div class="bottom">
+      <van-checkbox class="check" v-model="checked" shape="square">我已阅读并同意《循环血异型细胞检测知情同意书》</van-checkbox>
+      <div class="button" @click="submit">提 交 预 约</div>
+    </div>
+    <div class="fix">
+      <van-datetime-picker v-if="dateState" v-model="date" type="date" :min-date="minDate" :max-date="maxDate"
+                           @confirm="confirm" @cancel="cancel"/>
+      <!--<van-datetime-picker v-if="zldate" v-model="zlTime" type="date" :min-date="minDate" :max-date="maxDate" @confirm="confirmzl()" @cancel="cancel"/>-->
+    </div>
+  </div>
+</template>
+
+<script>
+  export default {
+    name: "appointment",
+    data() {
+      return {
+        dateType: '',
+        date: '',
+        min: '',
+        name: '',
+        sex: '',
+        age: '',
+        dateState: false,
+        minDate: new Date(1920, 0, 1),
+        maxDate: new Date(),
+        project: [],
+        card: '',
+        num: '',
+        phone: '',
+        isFamily: '1',
+        relation: '',
+        zlType: '',
+        isSelf: '1',
+        zlTime: '',
+        selfType: '',
+        status: [],
+        zldate: false,
+        value: [],
+        options: [
+          {value: 1, label: '1'},
+          {value: 2, label: '2'},
+          {value: 3, label: '3'},
+        ],
+        health: [],
+        healthState: [
+          {value: 1, label: '查出肿瘤尚未治疗'},
+          {value: 2, label: '已手术未做放化疗'},
+          {value: 3, label: '已手术正在做放化疗'},
+          {value: 4, label: '已手术，已结束放化疗'},
+          {value: 5, label: '未做手术正在做放化疗'},
+          {value: 6, label: '未做手术做放化疗已结束'}
+        ],
+        checked: true
+      }
+    },
+    mounted() {
+      document.title = '预约信息'
+    },
+    methods: {
+      getArea() {
+        let that = this
+        that.$request({
+          url: ''
+        })
+      },
+      confirm(value) {
+        console.log(value)
+        let d = new Date(value)
+        this.date = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate()
+        this.dateState = false
+        if (this.dateType == 'age') {
+          this.age = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate()
+        } else if (this.dateType == 'zl') {
+          this.zlTime = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate()
+        }
+      },
+      cancel() {
+        this.dateState = false
+      },
+      change(type) {
+        console.log(type)
+        this.dateType = type
+        this.dateState = true
+      },
+      submit() {
+
+      }
+    }
+  }
+</script>
+
+<style scoped>
+  .fix {
+    overflow: hidden;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  .bg {
+    width: 750px;
+    /*height: 2732px;*/
+    background-image: url("../assets/img/bg.png");
+    background-size: 750px 2737px;
+    /*position: fixed;*/
+    top: 0;
+    left: 0;
+    z-index: 2;
+    overflow: auto;
+  }
+
+  .cont {
+    width: 710px;
+    /*height: 989px;*/
+    margin: 21px auto;
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 21px 45px 34px 34px;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .title {
+    height: 85px;
+    width: 100%;
+    line-height: 85px;
+    font-family: MicrosoftYaHei-Bold;
+    font-size: 40px;
+    font-weight: normal;
+    font-stretch: normal;
+    color: #202020;
+    text-align: left;
+    border-bottom: 1px dashed #bfbfbf;
+    font-weight: bold;
+    margin-bottom: 15px;
+    overflow: hidden;
+  }
+
+  .input {
+    width: 647px;
+    height: 88px;
+    font-size: 30px;
+    color: #202020;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+  }
+
+  .inp {
+    width: 480px;
+    height: 88px;
+    border-radius: 5px;
+    border: solid 1px #bfbfbf;
+    padding-left: 10px;
+    box-sizing: border-box;
+  }
+
+  .el-input__inner {
+    width: 480px !important;
+    height: 88px !important;
+    border-radius: 5px !important;
+    border: solid 1px #bfbfbf !important;
+    padding-left: 10px !important;
+    box-sizing: border-box !important;
+  }
+
+  .bottom {
+    margin-top: 80px;
+  }
+
+  .button {
+    width: 640px;
+    height: 88px;
+    background-color: #e91616;
+    border-radius: 8px;
+    color: #ffffff;
+    line-height: 88px;
+    font-size: 40px;
+    margin: 20px auto;
+  }
+  .check{
+    margin-left: 60px!important;
+  }
+
+  .ed {
+    color: dodgerblue;
+    margin-top: 20px;
+    font-size: 26px;
+  }
+
+  .dis {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .dis .inp {
+    max-width: 300px;
+  }
+</style>
