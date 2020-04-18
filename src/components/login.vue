@@ -200,9 +200,7 @@
           },
           success(res) {
             localStorage.setItem("con_id", res.con_id);
-            let home = localStorage.getItem("home").split("?")[1];
-            // that.$router.replace({path: '/?' + home + '&ls'});
-            window.location.assign(localStorage.getItem("home"))
+            that.$router.push('/')
           },
           error(res){
 

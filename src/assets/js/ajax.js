@@ -1,6 +1,8 @@
 // import { Loading, Message } from 'vant';
 import router from '../../router/index.js'
-
+import Vue from 'vue'
+import {Toast} from "vant";
+Vue.use(Toast)
 let apiconfig = process.env.CMS_URL || CMS_URL
 // let apiconfig = 'https://wwwapi.pzlive.vip/index/'
 
@@ -182,7 +184,7 @@ let request = function (params = {}) {
       if (res.code == "200") {
         typeof params.success == 'function' ? params.success(res) : '';
       }  else {
-        typeof params.error == 'function' ? params.error(res) : '';
+        typeof params.error == 'function' ? params.error(res) : Toast('错误码：' + res.code);
 
       }
 
