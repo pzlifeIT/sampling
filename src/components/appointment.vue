@@ -9,17 +9,17 @@
       </div>
       <div class="input">
         <!--<van-field v-model="cardNum" label="卡号" border />-->
-        <label for="password">性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别</label>
+        <label >性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别</label>
         <select v-model="sex" name="" id="type" class="inp">
           <option value="">请选择</option>
           <option value="1">男</option>
           <option value="2">女</option>
-          <option value="3">第三性别</option>
         </select>
       </div>
       <div class="input">
         <label for="age">年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;龄</label>
-        <input v-model="age" @focus="change('age')" id="age" class="inp" type="text" placeholder="请选择年龄">
+        <!--<input v-model="age" @focus="change('age')" id="age" class="inp" type="text" placeholder="请选择年龄">-->
+        <input type="text" v-model="age" id="age" class="inp">
       </div>
       <div class="input">
         <label for="phone">电&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;话</label>
@@ -30,27 +30,41 @@
         <label for="card">证&nbsp;&nbsp;件&nbsp;&nbsp;类&nbsp;型</label>
         <select v-model="card" name="" id="card" class="inp">
           <option value="">请选择</option>
-          <option value="2">身份证</option>
-          <option value="3">护照</option>
+          <option value="1">身份证</option>
+          <option value="2">护照</option>
         </select>
       </div>
       <div class="input">
         <label for="phone">证&nbsp;&nbsp;件&nbsp;&nbsp;号&nbsp;码</label>
-        <input v-model="phone" id="num" class="inp" type="text" placeholder="请输入电话">
+        <input v-model="cardNum" id="num" class="inp" type="text" placeholder="请输入电话">
       </div>
       <div class="input">
         <!--<van-field v-model="cardNum" label="卡号" border />-->
         <label for="card">预&nbsp;&nbsp;约&nbsp;&nbsp;项&nbsp;目</label>
-        <el-select v-model="value" multiple placeholder="请选择" collapse-tags>
-          <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
+        <el-select v-model="project_id" multiple placeholder="请选择" collapse-tags>
+          <el-option v-for="item in project" :key="item.value" :label="item.label" :value="item.value"></el-option>
         </el-select>
       </div>
 
       <div class="input">
         <!--<van-field v-model="cardNum" label="卡号" border />-->
-        <label for="card">预&nbsp;约&nbsp;采&nbsp;样&nbsp;点</label>
-        <el-select v-model="value" multiple placeholder="请选择" collapse-tags>
-          <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
+        <label for="card">采&nbsp;样&nbsp;点&nbsp;地&nbsp;区</label>
+        <el-select v-model="proVal"  placeholder="省" @change="selectPro">
+          <el-option v-for="item in pro" :key="item.value" :label="item.label" :value="item.value"></el-option>
+        </el-select>
+        <el-select v-model="cityVal"  placeholder="市" @change="selectCity">
+          <el-option v-for="item in city" :key="item.value" :label="item.label" :value="item.value"></el-option>
+        </el-select>
+        <el-select v-model="areaVal"  placeholder="区" @change="selectArea">
+          <el-option v-for="item in area" :key="item.value" :label="item.label" :value="item.value"></el-option>
+        </el-select>
+      </div>
+
+      <div class="input">
+        <!--<van-field v-model="cardNum" label="卡号" border />-->
+        <label for="card">采&nbsp;&nbsp;样&nbsp;&nbsp;点</label>
+        <el-select v-model="sampAdd"  placeholder="请选择" >
+          <el-option v-for="item in sampling" :key="item.value" :label="item.label" :value="item.value"></el-option>
         </el-select>
       </div>
     </div>
@@ -109,9 +123,8 @@
       </div>
       <div class="input dis" v-if="isSelf == 2">
         <!--<van-field v-model="cardNum" label="卡号" border />-->
-        <label for="card">目前健康状态
-          （可多选）</label>
-        <el-select v-model="health" multiple placeholder="请选择" collapse-tags>
+        <label for="card">目前健康状态</label>
+        <el-select v-model="health"  placeholder="请选择" >
           <el-option v-for="item in healthState" :key="item.value" :label="item.label" :value="item.value"></el-option>
         </el-select>
       </div>
@@ -161,7 +174,7 @@
           {value: 2, label: '2'},
           {value: 3, label: '3'},
         ],
-        health: [],
+        health: '',
         healthState: [
           {value: 1, label: '查出肿瘤尚未治疗'},
           {value: 2, label: '已手术未做放化疗'},
@@ -170,18 +183,135 @@
           {value: 5, label: '未做手术正在做放化疗'},
           {value: 6, label: '未做手术做放化疗已结束'}
         ],
-        checked: true
+        checked: true,
+        pro:[],
+        proVal:'',
+        cityVal:'',
+        city:[],
+        areaVal:'',
+        cardNum:'',
+        sampling:[],
+        area:[],
+        sampAdd:'',
+        project_id: []
+      }
+    },
+    watch:{
+      project_id(val){
+        console.log(val)
       }
     },
     mounted() {
       document.title = '预约信息'
+      this.getArea()
+      this.getProject()
     },
     methods: {
+      getProject(){
+        let that = this
+        that.$request({
+          url:'wap/getsamplingReport',
+          // login:true,
+          success(res) {
+            that.dispro(res.data,'project')
+          }
+        })
+      },
+      selectArea(){
+        let that = this
+        that.$request({
+          url:'wap/getBloodSamplingAddress',
+          data:{
+            province_id:that.proVal,
+            city_id:that.cityVal,
+            area_id:that.areaVal
+          },
+          // login:true,
+          success(res) {
+            that.sampling= []
+            that.sampAdd = ''
+            that.dispro(res.result,'samp')
+          }
+        })
+      },
+      selectCity(){
+        let that = this
+        that.$request({
+          url:'wap/getArea',
+          // login:true,
+          data:{
+            cityId:this.cityVal
+          },
+          success(res) {
+            // that.area = res.data
+            that.area = []
+            that.areaVal = ''
+            that.sampling= []
+            that.sampAdd = ''
+            that.dispro(res.data,'area')
+          }
+        })
+      },
+      selectPro(){
+        let that = this
+        that.$request({
+          url:'wap/getCity',
+          // login:true,
+          data:{
+            provinceId:this.proVal
+          },
+          success(res) {
+            // that.city = res.data
+            that.city = []
+            that.cityVal = ''
+            that.area = []
+            that.areaVal = ''
+            that.sampling= []
+            that.sampAdd = ''
+            that.dispro(res.data,'city')
+          }
+        })
+      },
       getArea() {
         let that = this
         that.$request({
-          url: ''
+          url: 'wap/getProvinceCity',
+          // login:true,
+          success(res){
+            that.dispro(res.data,'pro')
+          }
         })
+      },
+      dispro(data,type){
+        for (let i=0;i<data.length;i++) {
+          if (type == 'pro'){
+            this.pro.push({
+              value:data[i].id,
+              label:data[i].area_name
+            })
+          } else if (type == 'city') {
+            this.city.push({
+              value:data[i].id,
+              label:data[i].area_name
+            })
+          }else if (type == 'area'){
+            this.area.push({
+              value:data[i].id,
+              label:data[i].area_name
+            })
+          }else if (type == 'samp') {
+            this.sampling.push({
+              value:data[i].id,
+              label:data[i].name
+            })
+          }else if (type == 'project') {
+            this.project.push({
+              value:data[i].id,
+              label:data[i].name
+            })
+          }
+
+        }
       },
       confirm(value) {
         console.log(value)
@@ -203,7 +333,30 @@
         this.dateState = true
       },
       submit() {
-
+        let that = this
+        that.$request({
+          url:'wap/addSamplingAppointment',
+          data:{
+            mobile:that.phone,
+            name:that.name,
+            sex:that.sex,
+            age:that.age,
+            idenity_type:that.card,
+            idenity_num:that.cardNum,
+            blood_sampling_id:that.sampAdd,
+            project_id:that.project_id.join(','),
+            is_illness:that.isFamily,
+            is_had_illness:that.isSelf,
+            had_illness_time:that.zlTime,
+            illness:that.zlType,
+            my_illness:that.selfType,
+            relation: that.relation,
+            health_type:that.health
+          },
+          success(res){
+            that.$router.push({path:'/qrcode',query:{id:res.id}})
+          }
+        })
       }
     }
   }

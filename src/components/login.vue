@@ -278,9 +278,8 @@
           return
         }
         let that = this
-        let loca = window.location.href;
+        let loca = window.location.origin;
         localStorage.setItem('local',loca)
-        console.log(loca)
         that.$request({
           url:'user/wxaccredit',
           data:{
@@ -295,7 +294,6 @@
         //獲取當前域名
         let url = window.location.href;
         let loginState = localStorage.getItem("loginStatus");
-        console.log(url);
         if (url.indexOf("code") != -1) {
           // localStorage.setItem("loginStatus", false);
           //將code拿出來,存進緩存
@@ -324,9 +322,7 @@
           },
           success(res) {
             localStorage.setItem("con_id", res.con_id);
-            let home = localStorage.getItem("home").split("?")[1];
-            // that.$router.replace({path: '/?' + home + '&ls'});
-            window.location.assign(localStorage.getItem("home"))
+            that.$router.push('/')
           }
         })
       }

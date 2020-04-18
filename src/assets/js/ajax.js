@@ -167,7 +167,7 @@ function login() {
 
 let request = function (params = {}) {
   if (!params.url) throw new Error('url 未传值')
-  if (!localStorage.getItem("cms_con_id") && !params.login && login()) return
+  if (!localStorage.getItem("con_id") && !params.login && login()) return
 
   let data = params.login ? params.data : addConId(params.data);
   Ajax({
@@ -175,7 +175,7 @@ let request = function (params = {}) {
     url: params.url,
     type: params.type,
     success: function (res) {
-      if (!params.login && res.code == "5000") {
+      if (res.code == "5000") {
         login()
         return
       }

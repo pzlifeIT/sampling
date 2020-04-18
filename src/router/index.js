@@ -5,6 +5,8 @@ import activate from '@/components/activate.vue'
 import appointment from '@/components/appointment'
 import login from '@/components/login'
 import card from '@/components/cardList'
+import qrcode from '@/components/qrcode'
+import tabble from '@/components/tabble'
 
 Vue.use(Router)
 
@@ -27,6 +29,14 @@ export default new Router({
       path: '/card',
       name: "cardList",
       component: card
+    }, {
+      path: '/qrcode',
+      name: 'qrcode',
+      component: qrcode
+    }, {
+      path: '/tabble',
+      name: 'tabble',
+      component: tabble
     }
   ]
 })
