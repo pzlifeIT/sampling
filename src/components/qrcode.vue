@@ -17,7 +17,7 @@
     mounted() {
       let s = Date.parse(new Date());
       let id = this.$route.query.id
-      let url = base64.Base64.encode('http://supcms.pzlive.vip/tabble?time=' + s + '&id=' + id)
+      let url = base64.Base64.encode('https://supdev.pzlive.vip/tabble?time=' + s + '&id=' + id)
       this.qr = 'https://wwwapi.pzlive.vip/index/OfflineActivities/createOrderQrCode?data=' + url
     },
     methods: {
