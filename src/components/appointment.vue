@@ -85,7 +85,7 @@
       <div class="input dis" v-if="isFamily==2">
         <label for="cardNum">本人与肿瘤患者成员关系</label>
         <el-select v-model="relation" name="" id="" class="inp noborder" :popper-append-to-body="false">
-          <el-option value="1" label=祖父""></el-option>
+          <el-option value="1" label="祖父"></el-option>
           <el-option value="2" label="祖母"></el-option>
           <el-option value="3" label="外公"></el-option>
           <el-option value="4" label="外婆"></el-option>
@@ -120,7 +120,7 @@
       <div class="input dis" v-if="isSelf == 2">
         <!--<van-field v-model="cardNum" label="卡号" border />-->
         <label for="card">目前健康状态</label>
-        <el-select v-model="health"  placeholder="请选择" >
+        <el-select v-model="health"  placeholder="请选择" :popper-append-to-body="false">
           <el-option v-for="item in healthState" :key="item.value" :label="item.label" :value="item.value"></el-option>
         </el-select>
       </div>
