@@ -338,7 +338,7 @@
             sex:that.sex,
             age:that.age,
             idenity_type:that.card,
-            idenity_num:that.cardNum,
+            idenity_nmber:that.cardNum,
             blood_sampling_id:that.sampAdd,
             project_id:that.project_id.join(','),
             is_illness:that.isFamily,
