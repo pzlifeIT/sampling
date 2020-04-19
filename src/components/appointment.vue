@@ -10,11 +10,11 @@
       <div class="input">
         <!--<van-field v-model="cardNum" label="卡号" border />-->
         <label >性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别</label>
-        <select v-model="sex" name="" id="type" class="inp">
-          <option value="">请选择</option>
-          <option value="1">男</option>
-          <option value="2">女</option>
-        </select>
+        <el-select v-model="sex" name="" id="type" class="inp noborder" :popper-append-to-body="false">
+          <!--<el-option value="">请选择</el-option>-->
+          <el-option :value="1" label="男"></el-option>
+          <el-option :value="2" label="女">女</el-option>
+        </el-select>
       </div>
       <div class="input">
         <label for="age">年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;龄</label>
@@ -28,20 +28,19 @@
       <div class="input">
         <!--<van-field v-model="cardNum" label="卡号" border />-->
         <label for="card">证&nbsp;&nbsp;件&nbsp;&nbsp;类&nbsp;型</label>
-        <select v-model="card" name="" id="card" class="inp">
-          <option value="">请选择</option>
-          <option value="1">身份证</option>
-          <option value="2">护照</option>
-        </select>
+        <el-select v-model="card" name="" id="card" class="inp noborder" :popper-append-to-body="false">
+          <el-option value="1" label="身份证"></el-option>
+          <el-option value="2" label="护照"></el-option>
+        </el-select>
       </div>
       <div class="input">
         <label for="phone">证&nbsp;&nbsp;件&nbsp;&nbsp;号&nbsp;码</label>
-        <input v-model="cardNum" id="num" class="inp" type="text" placeholder="请输入电话">
+        <input v-model="cardNum" id="num" class="inp" type="text" placeholder="请输入">
       </div>
       <div class="input">
         <!--<van-field v-model="cardNum" label="卡号" border />-->
         <label for="card">预&nbsp;&nbsp;约&nbsp;&nbsp;项&nbsp;目</label>
-        <el-select v-model="project_id" multiple placeholder="请选择" collapse-tags>
+        <el-select v-model="project_id" multiple placeholder="请选择" collapse-tags :popper-append-to-body="false">
           <el-option v-for="item in project" :key="item.value" :label="item.label" :value="item.value"></el-option>
         </el-select>
       </div>
@@ -49,13 +48,13 @@
       <div class="input">
         <!--<van-field v-model="cardNum" label="卡号" border />-->
         <label for="card">采&nbsp;样&nbsp;点&nbsp;地&nbsp;区</label>
-        <el-select v-model="proVal"  placeholder="省" @change="selectPro">
+        <el-select v-model="proVal"  placeholder="省" @change="selectPro" :popper-append-to-body="false">
           <el-option v-for="item in pro" :key="item.value" :label="item.label" :value="item.value"></el-option>
         </el-select>
-        <el-select v-model="cityVal"  placeholder="市" @change="selectCity">
+        <el-select v-model="cityVal"  placeholder="市" @change="selectCity" :popper-append-to-body="false">
           <el-option v-for="item in city" :key="item.value" :label="item.label" :value="item.value"></el-option>
         </el-select>
-        <el-select v-model="areaVal"  placeholder="区" @change="selectArea">
+        <el-select v-model="areaVal"  placeholder="区" @change="selectArea" :popper-append-to-body="false">
           <el-option v-for="item in area" :key="item.value" :label="item.label" :value="item.value"></el-option>
         </el-select>
       </div>
@@ -63,7 +62,7 @@
       <div class="input">
         <!--<van-field v-model="cardNum" label="卡号" border />-->
         <label for="card">采&nbsp;&nbsp;样&nbsp;&nbsp;点</label>
-        <el-select v-model="sampAdd"  placeholder="请选择" >
+        <el-select v-model="sampAdd"  placeholder="请选择" :popper-append-to-body="false">
           <el-option v-for="item in sampling" :key="item.value" :label="item.label" :value="item.value"></el-option>
         </el-select>
       </div>
@@ -78,27 +77,25 @@
       <div class="input dis">
         <!--<van-field v-model="cardNum" label="卡号" border />-->
         <label for="cardNum">本人是否有肿瘤家族史</label>
-        <select v-model="isFamily" name="" class="inp">
-          <option value="">请选择</option>
-          <option value="2">是</option>
-          <option value="1">否</option>
-        </select>
+        <el-select v-model="isFamily" name="" class="inp noborder" :popper-append-to-body="false">
+          <el-option value="2" label="是"></el-option>
+          <el-option value="1" label="否"></el-option>
+        </el-select>
       </div>
       <div class="input dis" v-if="isFamily==2">
         <label for="cardNum">本人与肿瘤患者成员关系</label>
-        <select v-model="relation" name="" id="" class="inp">
-          <option value="">请选择</option>
-          <option value="1">祖父</option>
-          <option value="2">祖父</option>
-          <option value="3">外公</option>
-          <option value="4">外婆</option>
-          <option value="5">父亲</option>
-          <option value="6">母亲</option>
-          <option value="7">兄弟姐妹</option>
-          <option value="8">子女</option>
-          <option value="9">伯/叔/姑</option>
-          <option value="10">舅/姨</option>
-        </select>
+        <el-select v-model="relation" name="" id="" class="inp noborder" :popper-append-to-body="false">
+          <el-option value="1" label=祖父""></el-option>
+          <el-option value="2" label="祖母"></el-option>
+          <el-option value="3" label="外公"></el-option>
+          <el-option value="4" label="外婆"></el-option>
+          <el-option value="5" label="父亲"></el-option>
+          <el-option value="6" label="母亲"></el-option>
+          <el-option value="7" label="兄弟姐妹"></el-option>
+          <el-option value="8" label="子女"></el-option>
+          <el-option value="9" label="伯/叔/姑"></el-option>
+          <el-option value="10" label="舅/姨"></el-option>
+        </el-select>
       </div>
       <div class="input dis" v-if="isFamily==2">
         <label for="age">家族肿瘤患者患什么肿瘤</label>
@@ -106,11 +103,10 @@
       </div>
       <div class="input dis">
         <label for="phone">本人是否患过肿瘤</label>
-        <select v-model="isSelf" name="" class="inp">
-          <option value="">请选择</option>
-          <option value="2">是</option>
-          <option value="1">否</option>
-        </select>
+        <el-select v-model="isSelf" name="" class="inp noborder" :popper-append-to-body="false">
+          <el-option value="2" label="是"></el-option>
+          <el-option value="1" label="否"></el-option>
+        </el-select>
       </div>
       <div class="input dis" v-if="isSelf == 2">
         <!--<van-field v-model="cardNum" label="卡号" border />-->
@@ -353,6 +349,7 @@
             relation: that.relation,
             health_type:that.health
           },
+          // login:true,
           success(res){
             that.$router.push({path:'/qrcode',query:{id:res.id}})
           }
@@ -391,7 +388,7 @@
     border-radius: 16px;
     padding: 21px 45px 34px 34px;
     box-sizing: border-box;
-    overflow: hidden;
+    /*overflow: hidden;*/
   }
 
   .title {
@@ -472,4 +469,8 @@
   .dis .inp {
     max-width: 300px;
   }
+  .noborder{
+    border: none;
+  }
+
 </style>

@@ -10,7 +10,7 @@
   }
 </script>
 
-<style>
+<style lang="scss">
   @import '../static/reset.css';
 
   #app {
@@ -21,5 +21,9 @@
     height: 100%;
     color: #2c3e50;
   }
-
+  .el-scrollbar {
+    .el-scrollbar__bar {
+      opacity: 1 !important;
+    }
+  }
 </style>
