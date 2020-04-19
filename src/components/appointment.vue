@@ -150,7 +150,7 @@
         sex: '',
         age: '',
         dateState: false,
-        minDate: new Date(1920, 0, 1),
+        minDate: new Date(1980, 0, 1),
         maxDate: new Date(),
         project: [],
         card: '',
