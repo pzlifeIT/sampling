@@ -17,7 +17,7 @@
       }
     },
     mounted() {
-      let s = Date.parse(new Date());
+      let s = Date.parse(new Date()) / 1000;
       let id = this.$route.query.id
       this.code = this.$route.query.code
       let url = base64.Base64.encode('https://supdev.pzlive.vip/tabble?time=' + s + '&id=' + id + '&code=' + this.code)
