@@ -553,7 +553,7 @@
           time--;
           if (time < 1) {
             that.cardPop = false
-            that.$router.push({path: '/qrcode', query: {id: res.id, code: res.safe_code}})
+            that.$router.push({path: '/qrcode', query: {id: res.id, code: res.safe_code || ''}})
             clearInterval(i);
             return
           }
