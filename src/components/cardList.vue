@@ -43,6 +43,7 @@
       }
     },
     mounted() {
+      document.title = '我的卡片'
       this.getProject()
     },
     methods: {

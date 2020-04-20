@@ -343,6 +343,7 @@
       this.isWx();
       this.isCode()
       this.setScroll()
+      document.title = '登陆'
     },
     beforeUpdate() {
       // this.isWx()
