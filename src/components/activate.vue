@@ -74,7 +74,7 @@ Vue.use(Toast)
     },
     methods:{
       checkMyCard(){
-        this.$router.push('/cardList')
+        this.$router.push('/card')
       },
       hideCard(){
         this.card = false
