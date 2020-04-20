@@ -526,7 +526,7 @@
             name: that.name,
             sex: that.sexCode,
             age: that.age,
-            idenity_type: that.card,
+            idenity_type: that.cardCode,
             idenity_nmber: that.cardNum,
             blood_sampling_id: that.samp_id,
             project_id: that.project_id.join(','),
