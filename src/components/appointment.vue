@@ -278,7 +278,7 @@
     mounted() {
       document.title = '预约信息'
       this.getArea()
-      // this.getProject()
+      this.getProject()
     },
     methods: {
       filter(type,options){
