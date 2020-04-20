@@ -10,7 +10,7 @@
       <div class="input">
         <!--<van-field v-model="cardNum" label="卡号" border />-->
         <label>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别</label>
-        <div  @click="change('sex')" class="inp" :class="sex?'':'have'">{{sex ? sex:'请选择'}}</div>
+        <div @click="change('sex')" class="inp" :class="sex?'':'have'">{{sex ? sex:'请选择'}}</div>
         <!--<el-select v-model="sex" name="" id="type" class="inp noborder" :popper-append-to-body="false">-->
         <!--&lt;!&ndash;<el-option value="">请选择</el-option>&ndash;&gt;-->
         <!--<el-option :value="1" label="男"></el-option>-->
@@ -30,7 +30,7 @@
         <!--<van-field v-model="cardNum" label="卡号" border />-->
         <label for="card">证&nbsp;&nbsp;件&nbsp;&nbsp;类&nbsp;型</label>
         <!--<input v-model="card" @focus="change('card')" class="inp" placeholder="请选择证件类型"/>-->
-        <div  @click="change('card')" class="inp" :class="card?'':'have'">{{card ? card:'请选择'}}</div>
+        <div @click="change('card')" class="inp" :class="card?'':'have'">{{card ? card:'请选择'}}</div>
         <!--<el-select v-model="card" name="" id="card" class="inp noborder" :popper-append-to-body="false">-->
         <!--<el-option value="1" label="身份证"></el-option>-->
         <!--<el-option value="2" label="护照"></el-option>-->
@@ -53,19 +53,19 @@
         <!--<van-field v-model="cardNum" label="卡号" border />-->
         <label for="card">采&nbsp;样&nbsp;点&nbsp;地&nbsp;区</label>
         <!--<input v-model="proName" @focus="change('pro')" class="inp area" placeholder="请选择省" />-->
-        <div  @click="change('pro')" class="inp area" :class="proName?'':'have'">{{proName ? proName:'请选择省'}}</div>
+        <div @click="change('pro')" class="inp area" :class="proName?'':'have'">{{proName ? proName:'请选择省'}}</div>
         <!--<el-select v-model="proVal" placeholder="省" @change="selectPro" :popper-append-to-body="false">-->
-          <!--<el-option v-for="item in pro" :key="item.value" :label="item.label" :value="item.value"></el-option>-->
+        <!--<el-option v-for="item in pro" :key="item.value" :label="item.label" :value="item.value"></el-option>-->
         <!--</el-select>-->
         <!--<input v-model="cityName" @focus="change('city')" class="inp area" placeholder="请选择市" />-->
-        <div  @click="change('city')" class="inp area" :class="cityName?'':'have'">{{cityName ? cityName:'请选择市'}}</div>
-        <div  @click="change('area')" class="inp area" :class="areaName?'':'have'">{{areaName ? areaName:'请选择区'}}</div>
+        <div @click="change('city')" class="inp area" :class="cityName?'':'have'">{{cityName ? cityName:'请选择市'}}</div>
+        <div @click="change('area')" class="inp area" :class="areaName?'':'have'">{{areaName ? areaName:'请选择区'}}</div>
         <!--<input v-model="areaName" @focus="change('area')" class="inp area" placeholder="请选择区" />-->
         <!--<el-select v-model="cityVal" placeholder="市" @change="selectCity" :popper-append-to-body="false">-->
-          <!--<el-option v-for="item in city" :key="item.value" :label="item.label" :value="item.value"></el-option>-->
+        <!--<el-option v-for="item in city" :key="item.value" :label="item.label" :value="item.value"></el-option>-->
         <!--</el-select>-->
         <!--<el-select v-model="areaVal" placeholder="区" @change="selectArea" :popper-append-to-body="false">-->
-          <!--<el-option v-for="item in area" :key="item.value" :label="item.label" :value="item.value"></el-option>-->
+        <!--<el-option v-for="item in area" :key="item.value" :label="item.label" :value="item.value"></el-option>-->
         <!--</el-select>-->
       </div>
 
@@ -73,7 +73,7 @@
         <!--<van-field v-model="cardNum" label="卡号" border />-->
         <label for="card">采&nbsp;&nbsp;样&nbsp;&nbsp;点</label>
         <!--<input v-model="sampAdd" @focus="change('add')" class="inp" placeholder="请选择"/>-->
-        <div  @click="change('add')" class="inp" :class="sampAdd?'':'have'">{{sampAdd ? sampAdd:'请选择'}}</div>
+        <div @click="change('add')" class="inp" :class="sampAdd?'':'have'">{{sampAdd ? sampAdd:'请选择'}}</div>
         <!--<el-select v-model="sampAdd"  placeholder="请选择" :popper-append-to-body="false">-->
         <!--<el-option v-for="item in sampling" :key="item.value" :label="item.label" :value="item.value"></el-option>-->
         <!--</el-select>-->
@@ -82,7 +82,7 @@
         <!--<van-field v-model="cardNum" label="卡号" border />-->
         <label for="card">预&nbsp;&nbsp;约&nbsp;&nbsp;时&nbsp;间&nbsp;</label>
         <!--<input v-model="start" @focus="change('start')" class="inp" placeholder="请选择" />-->
-        <div  @click="change('start')" class="inp" :class="start?'':'have'">{{start ? start:'请选择'}}</div>
+        <div @click="change('start')" class="inp" :class="start?'':'have'">{{start ? start:'请选择'}}</div>
 
         <!-- - -->
         <!--<input v-model="end" @focus="change('end')" class="inp" />-->
@@ -103,7 +103,7 @@
         <!--<van-field v-model="cardNum" label="卡号" border />-->
         <label for="cardNum">本人是否有肿瘤家族史</label>
         <!--<input v-model="family" @focus="change('family')" class="inp" placeholder="请选择"/>-->
-        <div  @click="change('family')" class="inp" :class="family?'':'have'">{{family}}</div>
+        <div @click="change('family')" class="inp" :class="family?'':'have'">{{family}}</div>
 
         <!--<el-select v-model="isFamily" name="" class="inp noborder" :popper-append-to-body="false">-->
         <!--<el-option value="2" label="是"></el-option>-->
@@ -113,7 +113,7 @@
       <div class="input dis" v-if="isFamily==2">
         <label for="cardNum">本人与肿瘤患者成员关系</label>
         <!--<input v-model="rela" @focus="change('relation')" class="inp" placeholder="请选择"/>-->
-        <div  @click="change('relation')" class="inp" :class="rela?'':'have'">{{rela?rela:'请选择'}}</div>
+        <div @click="change('relation')" class="inp" :class="rela?'':'have'">{{rela?rela:'请选择'}}</div>
 
         <!--<el-select v-model="relation" name="" id="" class="inp noborder" :popper-append-to-body="false">-->
         <!--<el-option value="1" label="祖父"></el-option>-->
@@ -135,7 +135,7 @@
       <div class="input dis">
         <label for="phone">本人是否患过肿瘤</label>
         <!--<input v-model="selfme" @focus="change('self')" class="inp"/>-->
-        <div  @click="change('self')" class="inp" :class="selfme?'':'have'">{{selfme}}</div>
+        <div @click="change('self')" class="inp" :class="selfme?'':'have'">{{selfme}}</div>
 
         <!--<el-select v-model="isSelf" name="" class="inp noborder" :popper-append-to-body="false">-->
         <!--<el-option value="2" label="是"></el-option>-->
@@ -146,7 +146,7 @@
         <!--<van-field v-model="cardNum" label="卡号" border />-->
         <label for="card">本人患肿瘤时间</label>
         <!--<input v-model="zlTimeText" @focus="change('zl')" class="inp" type="text" placeholder="请选择">-->
-        <div  @click="change('zl')" class="inp" :class="zlTimeText?'':'have'">{{zlTimeText?zlTimeText:'请选择'}}</div>
+        <div @click="change('zl')" class="inp" :class="zlTimeText?'':'have'">{{zlTimeText?zlTimeText:'请选择'}}</div>
 
       </div>
       <div class="input dis" v-if="isSelf == 2">
@@ -157,7 +157,7 @@
         <!--<van-field v-model="cardNum" label="卡号" border />-->
         <label for="card">目前健康状态</label>
         <!--<input v-model="healthText" @focus="change('health')" class="inp" type="text" placeholder="请选择">-->
-        <div  @click="change('health')" class="inp" :class="healthText?'':'have'">{{healthText?healthText:'请选择'}}</div>
+        <div @click="change('health')" class="inp" :class="healthText?'':'have'">{{healthText?healthText:'请选择'}}</div>
         <!--<el-select v-model="health"  placeholder="请选择" :popper-append-to-body="false">-->
         <!--<el-option v-for="item in healthState" :key="item.value" :label="item.label" :value="item.value"></el-option>-->
         <!--</el-select>-->
@@ -173,7 +173,7 @@
                            @confirm="confirm" @cancel="cancel" :formatter="formatter"/>
       <!--预约时间-->
       <van-datetime-picker v-if="dateState1" v-model="startTime" type="datetime" :min-date="maxDate" :max-date="max"
-                           @confirm="confirmStart" @cancel="cancel" :filter="filter" :visible-item-count="4" />
+                           @confirm="confirmStart" @cancel="cancel" :filter="filter" :visible-item-count="4"/>
       <!--<van-datetime-picker v-if="zldate" v-model="zlTime" type="date" :min-date="minDate" :max-date="maxDate" @confirm="confirmzl()" @cancel="cancel"/>-->
       <van-picker v-if="pop" :columns="columns" show-toolbar @confirm="confirmSex" @cancel="cancel"/>
     </div>
@@ -195,9 +195,9 @@
     name: "appointment",
     data() {
       return {
-        cardPop:false,
-        start:'',
-        end:'',
+        cardPop: false,
+        start: '',
+        end: '',
         sexArr: [{value: 1, text: '男'}, {value: 2, text: '女'}],
         sexState: false,
         cardArr: [{value: 1, text: '身份证'}, {value: 2, text: '护照'}],
@@ -212,7 +212,7 @@
         dateState: false,
         minDate: new Date(1980, 0, 1),
         maxDate: new Date(),
-        max:new Date(2030,0,1),
+        max: new Date(2030, 0, 1),
         project: [],
         card: '',
         num: '',
@@ -260,14 +260,14 @@
         family: '否',
         selfme: '否',
         healthText: '',
-        appointment_time:'',
-        dateState1:false,
-        startTime:'',
-        proName:'',
-        cityName:'',
-        areaName:'',
-        time:10,
-        zlTimeText:''
+        appointment_time: '',
+        dateState1: false,
+        startTime: '',
+        proName: '',
+        cityName: '',
+        areaName: '',
+        time: 10,
+        zlTimeText: ''
       }
     },
     watch: {
@@ -281,14 +281,15 @@
       this.getProject()
     },
     methods: {
-      filter(type,options){
-        if (type === 'hour'){
-          let val =  options.filter((option) => parseInt(option) <= 18);
+      filter(type, options) {
+        if (type === 'hour') {
+          let val = options.filter((option) => parseInt(option) <= 18);
           return val.filter((option) => parseInt(option) >= 8)
         }
         if (type === 'minute') {
-          return []
+          return options.filter((option) => option % 30 === 0)
         }
+        console.log(options)
         return options
       },
       formatter(type, val) {
@@ -331,7 +332,7 @@
           this.proVal = value.value
           this.proName = value.text
           this.selectPro()
-        } else if (this.type === 'city'){
+        } else if (this.type === 'city') {
           this.cityVal = value.value
           this.cityName = value.text
           this.selectCity()
@@ -346,8 +347,8 @@
         let that = this
         that.$request({
           url: 'wap/getsamplingReport',
-          data:{
-            status:1
+          data: {
+            status: 1
           },
           // login:true,
           success(res) {
@@ -364,7 +365,7 @@
             city_id: that.cityVal,
             area_id: that.areaVal
           },
-          login:true,
+          login: true,
           success(res) {
             that.sampling = []
             that.sampAdd = ''
@@ -376,7 +377,7 @@
         let that = this
         that.$request({
           url: 'wap/getArea',
-          login:true,
+          login: true,
           data: {
             cityId: this.cityVal
           },
@@ -394,7 +395,7 @@
         let that = this
         that.$request({
           url: 'wap/getCity',
-          login:true,
+          login: true,
           data: {
             provinceId: this.proVal
           },
@@ -461,11 +462,13 @@
           this.zlTimeText = d.getFullYear() + '年' + (d.getMonth() + 1) + '月'
         }
       },
-      confirmStart(value){
+      confirmStart(value) {
+        console.log(value)
         let d = new Date(value)
         this.date = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate()
         this.dateState1 = false
-        this.start = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + ' ' + d.getHours()+':00:00'
+        let state = d.getMinutes() ? d.getMinutes() : '00'
+        this.start = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + ' ' + d.getHours() +':'+ state +':00'
       },
       cancel() {
         this.dateState = false
@@ -500,11 +503,11 @@
         } else if (type === 'health') {
           this.columns = this.healthState
         } else if (type === 'start') {
-          this.dateState1 =true
+          this.dateState1 = true
           return
-        } else if (type === 'pro'){
+        } else if (type === 'pro') {
           this.columns = this.pro
-        } else if (type === 'city'){
+        } else if (type === 'city') {
           this.columns = this.city
         } else if (type === 'area') {
           this.columns = this.area
@@ -534,7 +537,7 @@
             my_illness: that.selfType,
             relation: that.relation,
             health_type: that.health,
-            appointment_time:that.start
+            appointment_time: that.start
           },
           // login:true,
           success(res) {
@@ -550,7 +553,7 @@
           time--;
           if (time < 1) {
             that.cardPop = false
-            that.$router.push({path: '/qrcode', query: {id: res.id,code:res.safe_code}})
+            that.$router.push({path: '/qrcode', query: {id: res.id, code: res.safe_code}})
             clearInterval(i);
             return
           }
@@ -678,18 +681,21 @@
   .noborder {
     border: none;
   }
-  .display{
+
+  .display {
     display: flex;
     justify-content: center;
     align-items: center;
   }
-  .area{
+
+  .area {
     width: 25%;
   }
-  .mask{
+
+  .mask {
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,.4);
+    background: rgba(0, 0, 0, .4);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -697,21 +703,24 @@
     top: 0;
     left: 0;
   }
-  .center{
+
+  .center {
     width: 710px;
     height: 689px;
     overflow: auto;
     background: #ffffff;
     border-radius: 16px;
   }
-  .hint-cont{
-    padding:0 40px;
+
+  .hint-cont {
+    padding: 0 40px;
     box-sizing: border-box;
     text-align: left;
     font-size: 30px;
     margin-bottom: 20px;
   }
-  .cen-title{
+
+  .cen-title {
     text-align: center;
     margin: 150px 0 100px;
     font-size: 46px;
@@ -720,19 +729,22 @@
     align-items: center;
     justify-content: center;
   }
-  .cen-title i{
+
+  .cen-title i {
     color: #e91616;
     margin-right: 20px;
     font-size: 80px;
   }
-  .cen-hint{
+
+  .cen-hint {
     text-align: left;
     margin-bottom: 30px;
     font-size: 28px;
-    padding:0 40px;
+    padding: 0 40px;
     box-sizing: border-box;
   }
-  .operation{
+
+  .operation {
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -741,13 +753,15 @@
     margin-bottom: 40px;
     font-size: 30px;
   }
-  .timeout{
+
+  .timeout {
     color: #e91616;
     text-align: center;
     font-size: 60px;
     margin: 40px 0;
   }
-  .have{
+
+  .have {
     color: #cccccc;
   }
 </style>
