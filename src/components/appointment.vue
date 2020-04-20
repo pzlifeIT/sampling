@@ -278,12 +278,13 @@
     mounted() {
       document.title = '预约信息'
       this.getArea()
-      this.getProject()
+      // this.getProject()
     },
     methods: {
       filter(type,options){
         if (type === 'hour'){
-          return options.filter((option) => (8 < parseInt(option) < 18));
+          let val =  options.filter((option) => parseInt(option) <= 18);
+          return val.filter((option) => parseInt(option) >= 8)
         }
         if (type === 'minute') {
           return []
@@ -468,6 +469,7 @@
       },
       cancel() {
         this.dateState = false
+        this.dateState1 = false
         this.pop = false
       },
       change(type) {
@@ -519,7 +521,7 @@
           data: {
             mobile: that.phone,
             name: that.name,
-            sex: that.sex,
+            sex: that.sexCode,
             age: that.age,
             idenity_type: that.card,
             idenity_nmber: that.cardNum,
