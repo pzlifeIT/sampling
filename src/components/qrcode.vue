@@ -1,6 +1,7 @@
 <template>
   <div>
     <img class="qrcode" :src="qr" alt="">
+    <div class="code">安全码：{{code}}</div>
   </div>
 </template>
 
@@ -11,13 +12,15 @@
     name: "qrcode",
     data() {
       return {
-        qr: ''
+        qr: '',
+        code: ''
       }
     },
     mounted() {
       let s = Date.parse(new Date());
       let id = this.$route.query.id
-      let url = base64.Base64.encode('https://supdev.pzlive.vip/tabble?time=' + s + '&id=' + id)
+      this.code = this.$router.query.code
+      let url = base64.Base64.encode('https://supdev.pzlive.vip/tabble?time=' + s + '&id=' + id + '&code=' + this.code)
       this.qr = 'https://wwwapi.pzlive.vip/index/OfflineActivities/createOrderQrCode?data=' + url
     },
     methods: {
@@ -46,5 +49,12 @@
     width: 450px;
     height: 450px;
     margin: 40px auto;
+  }
+
+  .code {
+    width: 100%;
+    text-align: center;
+    margin-top: 40px;
+    font-size: 40px;
   }
 </style>

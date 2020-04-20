@@ -35,6 +35,18 @@
 
       <div class="ed" @click="jump">已激活？去预约</div>
     </div>
+    <div class="mask" v-if="card">
+      <!--继续留在本页面激活，查看有哪些卡，去预约-->
+      <div class="center">
+        <div class="cen-title"><i class="el-icon-circle-check"></i> 激活成功！</div>
+        <div class="cen-hint">您可以继续以下操作</div>
+        <div class="operation">
+          <div @click="checkMyCard">查看我的卡片</div>
+          <div @click="jump">去预约</div>
+          <div @click="hideCard">继续激活</div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -51,7 +63,8 @@ Vue.use(Toast)
         recommend:'',
         phone:'',
         type:'',
-        password:''
+        password:'',
+        card:false
       }
     },
     mounted() {
@@ -59,6 +72,12 @@ Vue.use(Toast)
       this.getUser()
     },
     methods:{
+      checkMyCard(){
+        this.$router.push('/cardList')
+      },
+      hideCard(){
+        this.card = false
+      },
       getUser(){
         let that = this
         that.$request({
@@ -83,10 +102,7 @@ Vue.use(Toast)
             from_id:that.recommend
           },
           success(res) {
-            Toast('激活成功！')
-            setTimeout(function () {
-              that.$router.push('/appointment')
-            },2000)
+            that.card = true
           },
           failed(res){
             Toast(res.msg)
@@ -176,5 +192,51 @@ Vue.use(Toast)
     color: dodgerblue;
     margin-top: 20px;
     font-size: 26px;
+  }
+  .mask{
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+  .center{
+    width: 710px;
+    height: 689px;
+    overflow: auto;
+    background: #ffffff;
+    border-radius: 16px;
+  }
+  .cen-title{
+    text-align: center;
+    margin: 150px 0 120px;
+    font-size: 46px;
+    color: #e91616;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .cen-title i{
+    color: #e91616;
+    margin-right: 20px;
+    font-size: 80px;
+  }
+  .cen-hint{
+    text-align: center;
+    margin-bottom: 120px;
+    font-size: 28px;
+  }
+  .operation{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color: dodgerblue;
+    margin-top: 30px;
+    margin-bottom: 40px;
+    font-size: 30px;
   }
 </style>
