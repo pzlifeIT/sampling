@@ -12,19 +12,6 @@
       <img v-else-if="v.name === '19项微量元素指标和重金属超标检测'" class="card" src="../assets/img/zjs.gif" alt="">
       <div class="num"><span>卡号：</span> {{v.card_number}}</div>
     </div>
-    <div class="one">
-      <img class="card" src="../assets/img/jyjc.gif" alt="">
-      <div class="num"><span>卡号：</span> 333333</div>
-    </div>
-    <div class="one">
-      <img class="card" src="../assets/img/myl.gif" alt="">
-    </div>
-    <div class="one">
-      <img class="card" src="../assets/img/xb.gif" alt="">
-    </div>
-    <div class="one">
-      <img class="card" src="../assets/img/zjs.gif" alt="">
-    </div>
   </div>
 </template>
 
