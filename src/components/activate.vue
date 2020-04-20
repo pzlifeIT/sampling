@@ -34,6 +34,7 @@
       <div class="button" @click="submit">提 交 激 活</div>
 
       <div class="ed" @click="jump">已激活？去预约</div>
+      <div class="ed" @click="checkMyCard">查看我的卡片</div>
     </div>
     <div class="mask" v-if="card">
       <!--继续留在本页面激活，查看有哪些卡，去预约-->
