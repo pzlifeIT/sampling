@@ -345,6 +345,9 @@
         let that = this
         that.$request({
           url: 'wap/getsamplingReport',
+          data:{
+            status:1
+          },
           // login:true,
           success(res) {
             that.dispro(res.data, 'project')
