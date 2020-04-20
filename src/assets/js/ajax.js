@@ -123,7 +123,7 @@ function network(code) {
     default:
       text = "网络错误"
   }
-  zMessage(text)
+  Toast(text)
 }
 
 function addConId(data = {}) {

@@ -157,7 +157,7 @@
         <!--<van-field v-model="cardNum" label="卡号" border />-->
         <label for="card">目前健康状态</label>
         <!--<input v-model="healthText" @focus="change('health')" class="inp" type="text" placeholder="请选择">-->
-        <div @click="change('health')" class="inp" :class="healthText?'':'have'">{{healthText?healthText:'请选择'}}</div>
+        <div @click="change('health')" class="inp chang" :class="healthText?'':'have'">{{healthText?healthText:'请选择'}}</div>
         <!--<el-select v-model="health"  placeholder="请选择" :popper-append-to-body="false">-->
         <!--<el-option v-for="item in healthState" :key="item.value" :label="item.label" :value="item.value"></el-option>-->
         <!--</el-select>-->
@@ -760,7 +760,9 @@
     font-size: 60px;
     margin: 40px 0;
   }
-
+.chang{
+  overflow: hidden;
+}
   .have {
     color: #cccccc;
   }
