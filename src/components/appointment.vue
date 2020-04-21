@@ -41,7 +41,7 @@
       </div>
       <div class="input">
         <label for="card">预约项目(多选)</label>
-        <el-select v-model="project_id" multiple placeholder="请选择预约项目" collapse-tags :popper-append-to-body="false" popper-class="xl">
+        <el-select v-model="project_id" ref="select" multiple placeholder="请选择预约项目" collapse-tags :popper-append-to-body="false" popper-class="xl">
           <el-option v-for="item in project" :key="item.value" :label="item.text" :value="item.value"></el-option>
           <template>
             <div class="confirm" @click="selectChange">确定</div>
@@ -227,13 +227,7 @@
     },
     methods: {
       selectChange(){
-       this.xiala = false
-        let className = document.getElementsByClassName('xl')[0]
-        let fouce = document.getElementsByClassName('el-input--suffix')[0]
-        // console.log(className)
-        className.style.display = 'none'
-        console.log(fouce.classList)
-        // fouce.classList.remove('is-focus')
+        this.$refs.select.blur()
       },
       filter(type, options) {
         if (type === 'hour') {
@@ -302,7 +296,7 @@
         that.$request({
           url: 'wap/getsamplingReport',
           data: {
-            status: 1,
+            status: 1
           },
           // login:true,
           success(res) {
