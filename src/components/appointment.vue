@@ -476,33 +476,12 @@
       },
       submit() {
         let that = this
-        let data = {
-            mobile: that.phone,
-            name: that.name,
-            sex: that.sex,
-            age: that.age,
-            idenity_type: that.cardCode,
-            idenity_nmber: that.cardNum,
-            blood_sampling_id: that.samp_id,
-            project_id: that.project_id.join(','),
-            is_illness: that.isFamily,
-            is_had_illness: that.isSelf,
-            had_illness_time: that.zlTime,
-            illness: that.zlType,
-            my_illness: that.selfType,
-            relation: that.relation,
-            health_type: that.health,
-            appointment_time: that.start
-          }
-          console.log(data)
-        return
-
         that.$request({
           url: 'wap/addSamplingAppointment',
           data: {
             mobile: that.phone,
             name: that.name,
-            sex: that.sexCode,
+            sex: that.sex,
             age: that.age,
             idenity_type: that.cardCode,
             idenity_nmber: that.cardNum,
