@@ -11,7 +11,7 @@
         <!--<van-field v-model="cardNum" label="卡号" border />-->
         <label>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别</label>
         <!--<div @click="change('sex')" class="inp" :class="sex?'':'have'">{{sex ? sex:'请选择'}}</div>-->
-        <van-radio-group v-model="sex" class="radio">
+        <van-radio-group v-model="sex" class="radio" @change="selectSex">
           <van-radio name="1" checked-color="#e91616" shape="square">男</van-radio>
           <van-radio name="2" checked-color="#e91616" shape="square">女</van-radio>
         </van-radio-group>
@@ -212,7 +212,8 @@
         areaName: '',
         time: 10,
         zlTimeText: '',
-        xiala:false
+        xiala:false,
+        rela:''
       }
     },
     watch: {
@@ -226,6 +227,9 @@
       this.getProject()
     },
     methods: {
+      selectSex(value){
+        this.sex = value
+      },
       selectChange(){
         this.$refs.select.blur()
       },
@@ -252,10 +256,7 @@
 
       },
       confirmSex(value) {
-        if (this.type === 'sex') {
-          this.sex = value.text
-          this.sexCode = value.value
-        } else if (this.type === 'card') {
+        if (this.type === 'card') {
           this.card = value.text
           this.cardCode = value.value
         } else if (this.type === 'project') {
@@ -475,6 +476,27 @@
       },
       submit() {
         let that = this
+        let data = {
+            mobile: that.phone,
+            name: that.name,
+            sex: that.sex,
+            age: that.age,
+            idenity_type: that.cardCode,
+            idenity_nmber: that.cardNum,
+            blood_sampling_id: that.samp_id,
+            project_id: that.project_id.join(','),
+            is_illness: that.isFamily,
+            is_had_illness: that.isSelf,
+            had_illness_time: that.zlTime,
+            illness: that.zlType,
+            my_illness: that.selfType,
+            relation: that.relation,
+            health_type: that.health,
+            appointment_time: that.start
+          }
+          console.log(data)
+        return
+
         that.$request({
           url: 'wap/addSamplingAppointment',
           data: {
