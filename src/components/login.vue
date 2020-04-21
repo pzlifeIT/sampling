@@ -125,7 +125,7 @@
           },
           success(res){
             if (res.code == 200) {
-              this.timeOut()
+              that.timeOut()
             }else if(res.code == 3001){
              Toast('手机号错误')
             }else if (res.code == 3002){
