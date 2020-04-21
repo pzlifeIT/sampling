@@ -4,7 +4,7 @@ import Vue from 'vue'
 import {Toast} from "vant";
 Vue.use(Toast)
 let apiconfig = process.env.CMS_URL || CMS_URL
-// let apiconfig = 'https://wwwapi.pzlive.vip/index/'
+// let apiconfig = 'https://api.pzlive.vip/'
 
 function Ajax(params = {}) {
   if (!apiconfig) throw new Error('config 未引入')

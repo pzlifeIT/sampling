@@ -10,12 +10,11 @@
       <div class="input">
         <!--<van-field v-model="cardNum" label="卡号" border />-->
         <label>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别</label>
-        <div @click="change('sex')" class="inp" :class="sex?'':'have'">{{sex ? sex:'请选择'}}</div>
-        <!--<el-select v-model="sex" name="" id="type" class="inp noborder" :popper-append-to-body="false">-->
-        <!--&lt;!&ndash;<el-option value="">请选择</el-option>&ndash;&gt;-->
-        <!--<el-option :value="1" label="男"></el-option>-->
-        <!--<el-option :value="2" label="女">女</el-option>-->
-        <!--</el-select>-->
+        <!--<div @click="change('sex')" class="inp" :class="sex?'':'have'">{{sex ? sex:'请选择'}}</div>-->
+        <van-radio-group v-model="sex" class="radio">
+          <van-radio name="1" checked-color="#e91616" shape="square">男</van-radio>
+          <van-radio name="2" checked-color="#e91616" shape="square">女</van-radio>
+        </van-radio-group>
       </div>
       <div class="input">
         <label for="age">年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;龄</label>
@@ -41,92 +40,41 @@
         <input v-model="cardNum" id="num" class="inp" type="text" placeholder="请输入证件号码">
       </div>
       <div class="input">
-        <!--<van-field v-model="cardNum" label="卡号" border />-->
-        <label for="card">预&nbsp;&nbsp;约&nbsp;&nbsp;项&nbsp;目</label>
-        <!--<input v-model="project_name" @focus="change('project')" class="inp" />-->
-        <el-select v-model="project_id" multiple placeholder="请选择预约项目" collapse-tags :popper-append-to-body="false">
-          <el-option v-for="item in project" :key="item.value" :label="item.label" :value="item.value"></el-option>
+        <label for="card">预约项目(多选)</label>
+        <el-select v-model="project_id" multiple placeholder="请选择预约项目" collapse-tags :popper-append-to-body="false" popper-class="xl">
+          <el-option v-for="item in project" :key="item.value" :label="item.text" :value="item.value"></el-option>
+          <template>
+            <div class="confirm" @click="selectChange">确定</div>
+          </template>
         </el-select>
       </div>
 
       <div class="input">
-        <!--<van-field v-model="cardNum" label="卡号" border />-->
         <label for="card">采&nbsp;样&nbsp;点&nbsp;地&nbsp;区</label>
-        <!--<input v-model="proName" @focus="change('pro')" class="inp area" placeholder="请选择省" />-->
         <div @click="change('pro')" class="inp area" :class="proName?'':'have'">{{proName ? proName:'请选择省'}}</div>
-        <!--<el-select v-model="proVal" placeholder="省" @change="selectPro" :popper-append-to-body="false">-->
-        <!--<el-option v-for="item in pro" :key="item.value" :label="item.label" :value="item.value"></el-option>-->
-        <!--</el-select>-->
-        <!--<input v-model="cityName" @focus="change('city')" class="inp area" placeholder="请选择市" />-->
         <div @click="change('city')" class="inp area" :class="cityName?'':'have'">{{cityName ? cityName:'请选择市'}}</div>
         <div @click="change('area')" class="inp area" :class="areaName?'':'have'">{{areaName ? areaName:'请选择区'}}</div>
-        <!--<input v-model="areaName" @focus="change('area')" class="inp area" placeholder="请选择区" />-->
-        <!--<el-select v-model="cityVal" placeholder="市" @change="selectCity" :popper-append-to-body="false">-->
-        <!--<el-option v-for="item in city" :key="item.value" :label="item.label" :value="item.value"></el-option>-->
-        <!--</el-select>-->
-        <!--<el-select v-model="areaVal" placeholder="区" @change="selectArea" :popper-append-to-body="false">-->
-        <!--<el-option v-for="item in area" :key="item.value" :label="item.label" :value="item.value"></el-option>-->
-        <!--</el-select>-->
       </div>
 
       <div class="input">
-        <!--<van-field v-model="cardNum" label="卡号" border />-->
         <label for="card">采&nbsp;&nbsp;样&nbsp;&nbsp;点</label>
-        <!--<input v-model="sampAdd" @focus="change('add')" class="inp" placeholder="请选择"/>-->
         <div @click="change('add')" class="inp" :class="sampAdd?'':'have'">{{sampAdd ? sampAdd:'请选择'}}</div>
-        <!--<el-select v-model="sampAdd"  placeholder="请选择" :popper-append-to-body="false">-->
-        <!--<el-option v-for="item in sampling" :key="item.value" :label="item.label" :value="item.value"></el-option>-->
-        <!--</el-select>-->
       </div>
       <div class="input display">
-        <!--<van-field v-model="cardNum" label="卡号" border />-->
         <label for="card">预&nbsp;&nbsp;约&nbsp;&nbsp;时&nbsp;间&nbsp;</label>
-        <!--<input v-model="start" @focus="change('start')" class="inp" placeholder="请选择" />-->
         <div @click="change('start')" class="inp" :class="start?'':'have'">{{start ? start:'请选择'}}</div>
-
-        <!-- - -->
-        <!--<input v-model="end" @focus="change('end')" class="inp" />-->
-
-        <!--<el-select v-model="project_id" multiple placeholder="请选择" collapse-tags :popper-append-to-body="false">-->
-        <!--<el-option v-for="item in project" :key="item.value" :label="item.label" :value="item.value"></el-option>-->
-        <!--</el-select>-->
       </div>
     </div>
-    <!--<van-popup position="bottom" v-model="dateState">-->
-
-    <!--</van-popup>-->
-
 
     <div class="cont">
       <div class="title">受检人健康信息（选填）</div>
       <div class="input dis">
-        <!--<van-field v-model="cardNum" label="卡号" border />-->
         <label for="cardNum">本人是否有肿瘤家族史</label>
-        <!--<input v-model="family" @focus="change('family')" class="inp" placeholder="请选择"/>-->
         <div @click="change('family')" class="inp" :class="family?'':'have'">{{family}}</div>
-
-        <!--<el-select v-model="isFamily" name="" class="inp noborder" :popper-append-to-body="false">-->
-        <!--<el-option value="2" label="是"></el-option>-->
-        <!--<el-option value="1" label="否"></el-option>-->
-        <!--</el-select>-->
       </div>
       <div class="input dis" v-if="isFamily==2">
         <label for="cardNum">本人与肿瘤患者成员关系</label>
-        <!--<input v-model="rela" @focus="change('relation')" class="inp" placeholder="请选择"/>-->
         <div @click="change('relation')" class="inp" :class="rela?'':'have'">{{rela?rela:'请选择'}}</div>
-
-        <!--<el-select v-model="relation" name="" id="" class="inp noborder" :popper-append-to-body="false">-->
-        <!--<el-option value="1" label="祖父"></el-option>-->
-        <!--<el-option value="2" label="祖母"></el-option>-->
-        <!--<el-option value="3" label="外公"></el-option>-->
-        <!--<el-option value="4" label="外婆"></el-option>-->
-        <!--<el-option value="5" label="父亲"></el-option>-->
-        <!--<el-option value="6" label="母亲"></el-option>-->
-        <!--<el-option value="7" label="兄弟姐妹"></el-option>-->
-        <!--<el-option value="8" label="子女"></el-option>-->
-        <!--<el-option value="9" label="伯/叔/姑"></el-option>-->
-        <!--<el-option value="10" label="舅/姨"></el-option>-->
-        <!--</el-select>-->
       </div>
       <div class="input dis" v-if="isFamily==2">
         <label for="age">家族肿瘤患者患什么肿瘤</label>
@@ -134,18 +82,10 @@
       </div>
       <div class="input dis">
         <label for="phone">本人是否患过肿瘤</label>
-        <!--<input v-model="selfme" @focus="change('self')" class="inp"/>-->
         <div @click="change('self')" class="inp" :class="selfme?'':'have'">{{selfme}}</div>
-
-        <!--<el-select v-model="isSelf" name="" class="inp noborder" :popper-append-to-body="false">-->
-        <!--<el-option value="2" label="是"></el-option>-->
-        <!--<el-option value="1" label="否"></el-option>-->
-        <!--</el-select>-->
       </div>
       <div class="input dis" v-if="isSelf == 2">
-        <!--<van-field v-model="cardNum" label="卡号" border />-->
         <label for="card">本人患肿瘤时间</label>
-        <!--<input v-model="zlTimeText" @focus="change('zl')" class="inp" type="text" placeholder="请选择">-->
         <div @click="change('zl')" class="inp" :class="zlTimeText?'':'have'">{{zlTimeText?zlTimeText:'请选择'}}</div>
 
       </div>
@@ -169,8 +109,9 @@
       <div class="button" @click="submit">提 交 预 约</div>
     </div>
     <div class="fix">
-      <van-datetime-picker v-if="dateState" v-model="date" type="year-month" :min-date="minDate" :max-date="maxDate"
-                           @confirm="confirm" @cancel="cancel" :formatter="formatter"/>
+      <!--<van-datetime-picker v-if="dateState" v-model="date" type="year-month" :min-date="minDate" :max-date="maxDate"-->
+                           <!--@confirm="confirm" @cancel="cancel" :formatter="formatter"/>-->
+      <van-picker v-if="dateState" show-toolbar :columns="dateArr" @confirm="confirm" @cancel="cancel" />
       <!--预约时间-->
       <van-datetime-picker v-if="dateState1" v-model="startTime" type="datetime" :min-date="maxDate" :max-date="max"
                            @confirm="confirmStart" @cancel="cancel" :filter="filter" :visible-item-count="4"/>
@@ -195,6 +136,9 @@
     name: "appointment",
     data() {
       return {
+        dateArr:[{
+          values:[]
+        }],
         cardPop: false,
         start: '',
         end: '',
@@ -204,7 +148,7 @@
         cardState: false,
         projectState: false,
         dateType: '',
-        date: '',
+        date: new Date(),
         min: '',
         name: '',
         sex: '',
@@ -267,7 +211,8 @@
         cityName: '',
         areaName: '',
         time: 10,
-        zlTimeText: ''
+        zlTimeText: '',
+        xiala:false
       }
     },
     watch: {
@@ -281,6 +226,15 @@
       this.getProject()
     },
     methods: {
+      selectChange(){
+       this.xiala = false
+        let className = document.getElementsByClassName('xl')[0]
+        let fouce = document.getElementsByClassName('el-input--suffix')[0]
+        // console.log(className)
+        className.style.display = 'none'
+        console.log(fouce.classList)
+        // fouce.classList.remove('is-focus')
+      },
       filter(type, options) {
         if (type === 'hour') {
           let val = options.filter((option) => parseInt(option) <= 18);
@@ -348,7 +302,7 @@
         that.$request({
           url: 'wap/getsamplingReport',
           data: {
-            status: 1
+            status: 1,
           },
           // login:true,
           success(res) {
@@ -498,6 +452,14 @@
         } else if (type === 'self') {
           this.columns = [{value: 1, text: '否'}, {value: 2, text: '是'}]
         } else if (type === 'zl') {
+          let year = new Date().getFullYear()
+          this.dateArr = [{
+            values:[year,year-1,year-2,year-3,year-4,year-5,year-6,year-7,year-8,year-9,year-10,year-11,year-12,year-13,year-14,year-15,year-16,year-17,year-18,year-19,year-20],
+            defaultIndex:0
+          },{
+            values:[1,2,3,4,5,6,7,8,9,10,11,12],
+            defaultIndex:0
+          }]
           this.dateState = true
           return
         } else if (type === 'health') {
@@ -565,6 +527,13 @@
 </script>
 
 <style scoped>
+  .xl{
+    top: -99999px!important;
+  }
+  .confirm{
+    margin: 10px 0;
+    color: #3a8ee6;
+  }
   .fix {
     overflow: hidden;
     position: fixed;
@@ -632,6 +601,12 @@
     box-sizing: border-box;
     text-align: left;
     line-height: 88px;
+  }
+  .radio{
+    width: 480px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
   }
 
   .el-input__inner {

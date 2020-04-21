@@ -44,7 +44,7 @@
         <div class="operation">
           <div @click="checkMyCard">查看我的卡片</div>
           <div @click="jump">去预约</div>
-          <div @click="hideCard">继续激活</div>
+          <div @click="hideCard">激活其他卡片</div>
         </div>
       </div>
     </div>
@@ -77,6 +77,10 @@ Vue.use(Toast)
         this.$router.push('/card')
       },
       hideCard(){
+        this.cardNum = ''
+        this.recommend = ''
+        this.phone = ''
+        this.password = ''
         this.card = false
       },
       getUser(){
